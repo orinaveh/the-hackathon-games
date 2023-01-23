@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 {
+      @apply text-2xl;
+    }
+    h2 {
+      @apply text-xl;
+    }
+    span {
+      @apply text-sm;
+    }
+
+    body, div, h1, h2, span {
+        @apply font-sans text-slate-800 dark:text-slate-100
+    }
+  }
+  
