@@ -4,11 +4,14 @@
 	export let date: Date;
 	export let title: string;
     export let message: string;
-	const currentDate = new Date();
 
     message ||= 'Brake Time';
 
-	let initialTimeLeft = (date.getTime() - currentDate.getTime()) / 1000;
+    const getInitialTimeLeft = (date: Date, currentDate: Date) => (date.getTime() - currentDate.getTime()) / 1000;
+
+	let initialTimeLeft = getInitialTimeLeft(date, new Date());
+    const syncTime = 30;
+    let syncCycle = 0;
 	if (initialTimeLeft <= 0) {
 		initialTimeLeft = 0;
 	}
@@ -19,6 +22,11 @@
 
 	const interval = setInterval(() => {
 		initialTimeLeft--;
+        syncCycle++;
+        if (syncCycle === syncTime) {
+            syncCycle = 0;
+            initialTimeLeft = getInitialTimeLeft(date, new Date());
+        }
 		if (initialTimeLeft <= 0) {
 			clearInterval(interval);
 			initialTimeLeft = 0;
@@ -30,7 +38,7 @@
 	});
 </script>
 
-<div class="flex flex-col items-center gap-4 my-4 w-full bg-black">
+<div class="flex flex-col items-center gap-4 p-4 my-4 w-full bg-black">
 	{#if initialTimeLeft}<h2 class="text-4xl font-stopwatch">{title}</h2>{/if}
 	<p class={`text-9xl font-bold text-center font-stopwatch uppercase ${!initialTimeLeft && 'animate-shift'}`}>
 		{initialTimeLeft

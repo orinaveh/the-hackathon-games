@@ -3,20 +3,19 @@
 	import Page from '$lib/components/Page.svelte';
 	import { firestore } from '$lib/firebase';
 	import Countdown from '$lib/components/Countdown.svelte';
+	import GroupCard from '$lib/components/GroupCard.svelte';
 </script>
 
-<Page class="flex gap-2 flex-col"> 
-	<Doc ref="endTime/1" firestore={firestore} let:data={{ time, message }}>
-        <Countdown {message} title="Time To Next Brake" date={time?.toDate()} />
+<Page class="flex gap-2 flex-col">
+	<Doc ref="endTime/1" {firestore} let:data={{ time, message, title }}>
+		<Countdown {message} title={title || 'Time To Next Brake'} date={time?.toDate()} />
 	</Doc>
-
-    <Collection ref="groups" firestore={firestore} let:data={groups}>
-        {#each groups as group}
-        <div style={`background-color: ${group.color}`}>
-            {group.name}
-            {group.powerUpPoints}
-        </div>
-        {/each}
+	<h2 class="text-center">Groups</h2>
+	<Collection ref="groups" {firestore} let:data={groups}>
+		<section class="p-4 flex justify-evenly">
+			{#each groups as group}
+				<GroupCard {group} />
+			{/each}
+		</section>
 	</Collection>
-
 </Page>
