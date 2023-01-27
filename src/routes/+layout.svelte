@@ -1,12 +1,14 @@
-<script>
+<script lang="ts">
+	import '../globals.css';
+	import Navbar from '$lib/components/Navbar.svelte';
 	import { auth, firestore } from '$lib/firebase';
-	import { FirebaseApp } from 'sveltefire';
-
-	import '../globals.css';    
+	import { FirebaseApp, userStore } from 'sveltefire';
+	const user = userStore(auth);
 </script>
 
 <FirebaseApp {auth} {firestore}>
-	<div class="dark:bg-slate-800 bg-slate-300 w-screen h-screen">
+	<Navbar name={$user?.displayName ?? ''} />
+	<div class="dark:bg-zinc-800 bg-zinc-300 w-screen h-screen">
 		<slot />
 	</div>
 </FirebaseApp>

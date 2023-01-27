@@ -1,10 +1,22 @@
 <script lang="ts">
-	import Button from '$lib/components/Button.svelte';
-	import { signOut } from '$lib/firebase';
-	import { User } from 'sveltefire';
+	import { Collection, Doc } from 'sveltefire';
+	import Page from '$lib/components/Page.svelte';
+	import { firestore } from '$lib/firebase';
+	import Countdown from '$lib/components/Countdown.svelte';
 </script>
 
-<User let:user>
-	Hello {user?.displayName}
-	<Button on:click={signOut}>Sign Out</Button>
-</User>
+<Page class="flex gap-2 flex-col"> 
+	<Doc ref="endTime/1" firestore={firestore} let:data={{ time, message }}>
+        <Countdown {message} title="Time To Next Brake" date={time?.toDate()} />
+	</Doc>
+
+    <Collection ref="groups" firestore={firestore} let:data={groups}>
+        {#each groups as group}
+        <div style={`background-color: ${group.color}`}>
+            {group.name}
+            {group.powerUpPoints}
+        </div>
+        {/each}
+	</Collection>
+
+</Page>

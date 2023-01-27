@@ -14,7 +14,15 @@
     }
 
     body, div, h1, h2, span {
-        @apply font-sans text-slate-800 dark:text-slate-100
+        @apply font-sans text-slate-800 dark:text-slate-200
     }
   }
   
+@font-face {
+  font-family: 'stopwatch';
+  src: url(/fonts/digital-7.ttf);
+}
+
+main {
+  padding: 0 !important;
+}

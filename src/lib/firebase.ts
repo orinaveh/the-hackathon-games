@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { doc, setDoc, getFirestore } from 'firebase/firestore';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { goto } from '$app/navigation';
 
@@ -20,14 +20,15 @@ export const firestore = getFirestore(app);
 export const auth = getAuth(app);
 
 export const signIn = () =>
-	signInWithPopup(auth, provider).then((result) => {
-		// This gives you a Google Access Token. You can use it to access the Google API.
+	signInWithPopup(auth, provider).then(async (result) => {
 		const credential = GoogleAuthProvider.credentialFromResult(result);
 		if (credential) {
-			const user = result.user;
+			const { user, operationType } = result;
 			auth.updateCurrentUser(user);
+			if (operationType === 'signIn') await setDoc(doc(firestore, 'users', user.uid), {
+				name: user.displayName,
+			})
 		}
-		// ...
 	});
 
 export const signOut = () => { 
