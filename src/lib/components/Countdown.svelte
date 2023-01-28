@@ -39,8 +39,8 @@
 </script>
 
 <div class="flex flex-col items-center gap-4 p-4 my-4 w-full bg-black">
-	{#if initialTimeLeft}<h2 class="text-4xl font-stopwatch">{title}</h2>{/if}
-	<p class={`text-9xl font-bold text-center font-stopwatch uppercase ${!initialTimeLeft && 'animate-shift'}`}>
+	{#if initialTimeLeft}<h2 class="text-4xl text-center font-stopwatch">{title}</h2>{/if}
+	<p class={`text-7xl md:text-9xl font-bold text-center font-stopwatch uppercase ${!initialTimeLeft && 'animate-shift'}`}>
 		{initialTimeLeft
 			? `${hours[0].length === 1 ? 0 : ''}${hours[0]}:${minutes[0].length === 1 ? 0 : ''}${
 					minutes[0]
