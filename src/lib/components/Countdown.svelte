@@ -1,17 +1,25 @@
 <script lang="ts">
+	import { useFullScreen } from '$lib/refHooks/useFullScreen';
 	import { onDestroy } from 'svelte';
+	import MdOpenInNew from 'svelte-icons/md/MdOpenInNew.svelte';
+	import MdExitToApp from 'svelte-icons/md/MdExitToApp.svelte';
+	import IconButton from './Buttons/IconButton.svelte';
 
 	export let date: Date;
 	export let title: string;
-    export let message: string;
+	export let message: string;
 
-    message ||= 'Brake Time';
+	let isfullScreen = false;
 
-    const getInitialTimeLeft = (date: Date, currentDate: Date) => (date.getTime() - currentDate.getTime()) / 1000;
+	message ||= 'Brake Time';
+
+
+	const getInitialTimeLeft = (date: Date, currentDate: Date) =>
+		(date.getTime() - currentDate.getTime()) / 1000;
 
 	let initialTimeLeft = getInitialTimeLeft(date, new Date());
-    const syncTime = 30;
-    let syncCycle = 0;
+	const syncTime = 30;
+	let syncCycle = 0;
 	if (initialTimeLeft <= 0) {
 		initialTimeLeft = 0;
 	}
@@ -22,11 +30,11 @@
 
 	const interval = setInterval(() => {
 		initialTimeLeft--;
-        syncCycle++;
-        if (syncCycle === syncTime) {
-            syncCycle = 0;
-            initialTimeLeft = getInitialTimeLeft(date, new Date());
-        }
+		syncCycle++;
+		if (syncCycle === syncTime) {
+			syncCycle = 0;
+			initialTimeLeft = getInitialTimeLeft(date, new Date());
+		}
 		if (initialTimeLeft <= 0) {
 			clearInterval(interval);
 			initialTimeLeft = 0;
@@ -38,13 +46,20 @@
 	});
 </script>
 
-<div class="flex flex-col items-center gap-4 p-4 w-full bg-black">
-	{#if initialTimeLeft}<h2 class="text-4xl text-center font-stopwatch">{title}</h2>{/if}
-	<p class={`text-7xl md:text-9xl font-bold text-center font-stopwatch uppercase ${!initialTimeLeft && 'animate-shift'}`}>
+<div use:useFullScreen={isfullScreen} class="flex relative flex-col justify-center items-center gap-4 p-4 w-full bg-black">
+	{#if initialTimeLeft}<h2 class="{isfullScreen ? 'text-[150px] leading-[9rem]' : 'text-4xl'} text-center font-stopwatch">{title}</h2>{/if}
+	<p
+		class="font-bold text-center font-stopwatch uppercase {
+			!initialTimeLeft && 'animate-shift'
+		} {isfullScreen ? 'text-[500px]' : 'text-7xl md:text-9xl'}"
+	>
 		{initialTimeLeft
 			? `${hours[0].length === 1 ? 0 : ''}${hours[0]}:${minutes[0].length === 1 ? 0 : ''}${
 					minutes[0]
 			  }:${seconds[0].length === 1 ? 0 : ''}${seconds[0]}`
 			: message}
 	</p>
+	<IconButton class="!absolute right-4 bottom-4 invisible md:visible" on:click={() => (isfullScreen = !isfullScreen)}
+		>{#if isfullScreen} <MdExitToApp /> {:else} <MdOpenInNew />{/if}</IconButton
+	>
 </div>

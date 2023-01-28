@@ -9,6 +9,6 @@
 	on:click
 	on:keydown
 	{...$$props}
-    class="!rounded-[50%] !p-2 !flex !justify-center !items-center"
+    class={`!rounded-[50%] !p-2 !flex !justify-center !items-center ${$$props.class}`}
 	><slot /></Button
 >
