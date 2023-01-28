@@ -14,7 +14,8 @@ const config = {
         'accent': colors.green[700]
       },
       fontFamily: {
-        stopwatch: ['stopwatch']
+        stopwatch: ['stopwatch'],
+        Rubik: ['Rubik']
       },
         animation: {
           'shift': 'shift 2s linear infinite',
