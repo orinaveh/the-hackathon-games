@@ -5,7 +5,7 @@
 	export let name = '';
 </script>
 
-<div class="dark:bg-primary flex justify-between py-4 px-8">
+<navbar class="dark:bg-primary flex justify-between py-4 px-8 w-screen">
 	<div class="flex gap-4" href="/">
 		{#if name}<IconButton color="accent" on:click={signOut}><GoSignOut /></IconButton>{/if}
 		<span class="self-center whitespace-nowrap text-xl font-semibold hidden md:block">
@@ -15,4 +15,4 @@
 	<span class="self-center whitespace-nowrap text-xl font-semibold">
 		The Hackathon Games
 	</span>
-</div>
+</navbar>

@@ -16,7 +16,7 @@
 	on:click
 	on:keydown
 	{...$$props}
-	class={`dark:bg-${$$props.color ?? 'primary'} hover:!brightness-90 !items-center !gap-2 !p-4 ${$$props?.class ?? ''} `}
+	class={`hover:!brightness-90 dark:bg-${$$props.color ?? 'primary'} !items-center !gap-2 !p-4 ${$$props?.class ?? ''} `}
 	><slot name="leftIcon" />
 	<slot />
 	<slot name="rightIcon" />

@@ -1,4 +1,4 @@
-<div class="fixed p-4 bottom-0 w-screen h-20 bg-primary justify-end flex gap-4">
-    <img class="max-h-full" src="./logos/sapir.svg" />
-    <img class="max-h-full" src="./logos/yesodot.svg" />
-</div>
+<footer class="p-4 mt-auto w-screen h-16 md:h-20 bg-primary justify-end flex gap-4">
+    <img alt="sapir" class="max-h-full" src="./logos/sapir.svg" />
+    <img alt="yesodot" class="max-h-full" src="./logos/yesodot.svg" />
+</footer>
