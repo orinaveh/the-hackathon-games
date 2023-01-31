@@ -11,8 +11,9 @@
 
 	let isfullScreen = false;
 
-	message ||= 'Brake Time';
+	let screenH: number, screenW: number;
 
+	message ||= 'Brake Time';
 
 	const getInitialTimeLeft = (date: Date, currentDate: Date) =>
 		(date.getTime() - currentDate.getTime()) / 1000;
@@ -46,12 +47,22 @@
 	});
 </script>
 
-<div use:useFullScreen={isfullScreen} class="flex relative flex-col justify-center items-center gap-4 p-4 w-full bg-black">
-	{#if initialTimeLeft}<h2 class="{isfullScreen ? 'text-[150px] leading-[9rem]' : 'text-4xl'} text-center font-stopwatch">{title}</h2>{/if}
+<div
+	use:useFullScreen={isfullScreen}
+	bind:clientHeight={screenH}
+	bind:clientWidth={screenW}
+	class="flex relative flex-col justify-center items-center gap-4 p-4 w-full bg-black"
+>
+	{#if initialTimeLeft}<h2
+			class="{isfullScreen && 'leading-[9rem]'} text-4xl text-center font-stopwatch"
+			style={isfullScreen ? `font-size: ${screenW / 15}px` : ''}
+		>
+			{title}
+		</h2>{/if}
 	<p
-		class="font-bold text-center font-stopwatch uppercase {
-			!initialTimeLeft && 'animate-shift'
-		} {isfullScreen ? 'text-[500px]' : 'text-7xl md:text-9xl'}"
+		class="font-bold text-center font-stopwatch uppercase text-7xl md:text-9xl {!initialTimeLeft &&
+			'animate-shift'} {isfullScreen && 'leading-[9rem]'}"
+			style={isfullScreen ? `font-size: ${screenW / 6}px` : ''}
 	>
 		{initialTimeLeft
 			? `${hours[0].length === 1 ? 0 : ''}${hours[0]}:${minutes[0].length === 1 ? 0 : ''}${
@@ -59,7 +70,9 @@
 			  }:${seconds[0].length === 1 ? 0 : ''}${seconds[0]}`
 			: message}
 	</p>
-	<IconButton class="!absolute right-4 bottom-4 invisible md:visible" on:click={() => (isfullScreen = !isfullScreen)}
+	<IconButton
+		class="!absolute right-4 bottom-4 invisible md:visible"
+		on:click={() => (isfullScreen = !isfullScreen)}
 		>{#if isfullScreen} <MdExitToApp /> {:else} <MdOpenInNew />{/if}</IconButton
 	>
 </div>
