@@ -11,7 +11,7 @@
 </Doc>
 <h2 class="text-center">Groups</h2>
 <Collection ref="groups" {firestore} let:data={groups}>
-	<section class="flex max-w-3xl text-center justify-evenly md:gap-20 gap-6 flex-wrap">
+	<section class="flex max-w-6xl text-center justify-evenly md:gap-20 gap-6 flex-wrap">
 		{#each groups as group}
 			<GroupCard {group} />
 		{/each}
