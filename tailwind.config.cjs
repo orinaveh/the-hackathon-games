@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
@@ -30,7 +31,11 @@ const config = {
         }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addVariant }) {
+      addVariant('hocus', ['&:hover', '&:focus'])
+    })
+  ],
   safelist: [
     'dark',
     {
