@@ -5,7 +5,6 @@ const colors = require('tailwindcss/colors');
 const config = {
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
-		'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
 	],
 	theme: {
 		extend: {
@@ -19,7 +18,8 @@ const config = {
 				Rubik: ['Rubik']
 			},
 			animation: {
-				shift: 'shift 2s linear infinite'
+				shift: 'shift 2s linear infinite',
+				shiftbrake: 'shift 2s linear infinite'
 			},
 			keyframes: {
 				shift: {

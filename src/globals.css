@@ -28,6 +28,9 @@
 	p {
 		@apply font-Rubik text-slate-800 dark:text-slate-200;
 	}
+	button {
+		@apply !font-Rubik
+	}
 }
 
 @font-face {
