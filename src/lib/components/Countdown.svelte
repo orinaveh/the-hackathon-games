@@ -62,7 +62,7 @@
 	<p
 		class="font-bold text-center font-stopwatch uppercase text-7xl md:text-9xl {!initialTimeLeft &&
 			'animate-shift'} {isfullScreen && 'leading-[9rem]'}"
-			style={isfullScreen ? `font-size: ${screenW / 6}px` : ''}
+		style={isfullScreen ? `font-size: ${screenW / 6}px` : ''}
 	>
 		{initialTimeLeft
 			? `${hours[0].length === 1 ? 0 : ''}${hours[0]}:${minutes[0].length === 1 ? 0 : ''}${

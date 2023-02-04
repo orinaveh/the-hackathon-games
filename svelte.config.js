@@ -11,10 +11,9 @@ const config = {
 		adapter: adapter({
 			pages: 'public',
 			assets: 'public',
-            fallback: "index.html",
+			fallback: 'index.html',
 			precompress: true
-			}),
-			
+		})
 	}
 };
 

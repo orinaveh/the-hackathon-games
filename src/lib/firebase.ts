@@ -25,13 +25,14 @@ export const signIn = () =>
 		if (credential) {
 			const { user, operationType } = result;
 			auth.updateCurrentUser(user);
-			if (operationType === 'signIn') await setDoc(doc(firestore, 'users', user.uid), {
-				name: user.displayName,
-			})
+			if (operationType === 'signIn')
+				await setDoc(doc(firestore, 'users', user.uid), {
+					name: user.displayName
+				});
 		}
 	});
 
-export const signOut = () => { 
+export const signOut = () => {
 	auth.signOut();
 	goto('/login');
 };

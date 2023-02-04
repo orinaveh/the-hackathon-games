@@ -12,7 +12,5 @@
 			{name}
 		</span>
 	</div>
-	<span class="self-center whitespace-nowrap text-xl font-semibold">
-		The Hackathon Games
-	</span>
+	<span class="self-center whitespace-nowrap text-xl font-semibold"> The Hackathon Games </span>
 </navbar>

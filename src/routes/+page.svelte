@@ -2,7 +2,7 @@
 	import { Collection, Doc } from 'sveltefire';
 	import { firestore } from '$lib/firebase';
 	import Countdown from '$lib/components/Countdown.svelte';
-	import GroupCard from '$lib/components/GroupCard.svelte';
+	import GroupCard from '$lib/components/GroupCard/GroupCard.svelte';
 </script>
 
 <h1 class="text-center md:text-5xl">Hackathon Dashboard</h1>
