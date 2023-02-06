@@ -17,7 +17,12 @@ module.exports = {
     'svelte/typescript': () => require('typescript')
   },
   rules: {
-    'prettier/prettier': 'error'
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      },
+    ],
   },
   parserOptions: {
     sourceType: 'module',

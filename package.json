@@ -19,6 +19,7 @@
     "@sveltejs/kit": "^1.0.0",
     "@svelteuidev/composables": "^0.8.0",
     "@svelteuidev/core": "^0.8.0",
+    "@types/downloadjs": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "autoprefixer": "^10.4.13",
@@ -40,7 +41,10 @@
   "type": "module",
   "dependencies": {
     "@rgossiaux/svelte-headlessui": "^1.0.2",
+    "downloadjs": "^1.4.7",
     "firebase": "^9.16.0",
+    "html-to-image": "^1.11.11",
+    "html2canvas": "^1.4.1",
     "radix-icons-svelte": "^1.2.1",
     "svelte-icons": "^2.1.0",
     "sveltefire": "^0.2.3"
