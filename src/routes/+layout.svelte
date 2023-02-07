@@ -4,7 +4,18 @@
   import Footer from '$lib/components/Footer.svelte';
   import { auth, firestore } from '$lib/firebase';
   import { FirebaseApp, userStore } from 'sveltefire';
+  import { fullUserStore } from '$lib/stores/fullUserStore';
+  import { doc, getDoc } from 'firebase/firestore';
   const user = userStore(auth);
+
+  user.subscribe(async (val) => {
+    if (val) {
+      const fullUser = await getDoc(doc(firestore, 'users', val.uid));
+      if (fullUser) {
+        fullUserStore.set(fullUser.data() as any);
+      }
+    }
+  });
 </script>
 
 <svelte:head>

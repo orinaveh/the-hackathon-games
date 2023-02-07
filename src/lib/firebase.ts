@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { doc, setDoc, getFirestore } from 'firebase/firestore';
+import { doc, setDoc, getFirestore, getDoc } from 'firebase/firestore';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { goto } from '$app/navigation';
+import { fullUserStore } from './stores/fullUserStore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA97hO8IRNTJLkPSDiPLpD9axWmwxJdkqY',
@@ -25,10 +26,11 @@ export const signIn = () =>
     if (credential) {
       const { user, operationType } = result;
       auth.updateCurrentUser(user);
-      if (operationType === 'signIn')
+      if (operationType === 'signIn') {
         await setDoc(doc(firestore, 'users', user.uid), {
           name: user.displayName
         });
+      }
     }
   });
 
