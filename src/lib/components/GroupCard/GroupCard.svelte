@@ -3,25 +3,24 @@
     color: string;
     name: string;
     powerUpPoints: number;
-    currentMission?: DocumentReference;
+    currentMission?: number | null;
     id: string;
   }
 </script>
 
 <script lang="ts">
-  import { getDoc, type DocumentReference } from 'firebase/firestore';
   import { onMount } from 'svelte';
   import MdAdd from 'svelte-icons/md/MdAdd.svelte';
   import IconButton from '../Buttons/IconButton.svelte';
   import HoverDiv from '../HoverDiv.svelte';
   import GroupCardDialog from './GroupCardDialog.svelte';
+  import cards from '../../../routes/cards/config';
 
   let missionName: string;
 
   onMount(async () => {
-    if (group.currentMission) {
-      const resolve = await getDoc(group.currentMission);
-      missionName = resolve.get('name');
+    if (group?.currentMission !== null) {
+      missionName = cards.find((card) => card.id === group.currentMission)?.name ?? '';
     }
   });
 
