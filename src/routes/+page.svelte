@@ -6,8 +6,12 @@
 </script>
 
 <h1 class="text-center md:text-5xl">Hackathon Dashboard</h1>
-<Doc ref="endTime/1" {firestore} let:data={{ time, message, title }}>
-  <Countdown {message} title={title || 'Time To Next Brake'} date={time?.toDate()} />
+<Doc ref="endTime/1" {firestore} let:data={{ time, message, title, currentCurse }}>
+  <Countdown
+  {message} 
+  title={title || 'Time To Next Brake'} 
+  curse={currentCurse} 
+  date={time?.toDate()} />
 </Doc>
 <h2 class="text-center">Groups</h2>
 <Collection ref="groups" {firestore} let:data={groups}>

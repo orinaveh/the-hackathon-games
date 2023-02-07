@@ -8,6 +8,7 @@
   export let date: Date;
   export let title: string;
   export let message: string;
+  export let curse: string;
 
   let isfullScreen = false;
 
@@ -70,6 +71,13 @@
         }:${seconds[0].length === 1 ? 0 : ''}${seconds[0]}`
       : message}
   </p>
+  {#if curse}<p
+      class="font-bold text-center font-stopwatch uppercase text-5xl animate-shift 
+        {isfullScreen && 'leading-[9rem]'}"
+      style={isfullScreen ? `font-size: ${screenW / 15}px` : ''}
+    >
+      Curse: {curse}
+    </p>{/if}
   <IconButton
     class="!absolute right-4 bottom-4 invisible md:visible"
     on:click={() => (isfullScreen = !isfullScreen)}
