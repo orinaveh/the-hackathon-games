@@ -17,7 +17,7 @@
 </Doc>
 <h2 class="text-center">Groups</h2>
 {#if $fullUserStore?.group != null}<Doc
-    ref="groups/${$fullUserStore.group}"
+    ref="groups/{$fullUserStore.group}"
     {firestore}
     let:data={group}
   >
