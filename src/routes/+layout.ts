@@ -5,10 +5,10 @@ import type { LayoutLoad } from './$types';
 export const ssr = false;
 
 export const load: LayoutLoad<void> = ({ route: { id } }) => {
-	const isLogin = id === '/login';
-	auth.onAuthStateChanged((value) => {
-		if (isLogin ? !!value : !value) {
-			return goto(isLogin ? '/' : '/login');
-		}
-	});
+  const isLogin = id === '/login';
+  auth.onAuthStateChanged((value) => {
+    if (isLogin ? !!value : !value) {
+      return goto(isLogin ? '/' : '/login');
+    }
+  });
 };
