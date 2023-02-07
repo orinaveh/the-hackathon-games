@@ -1,6 +1,5 @@
 <script lang="ts">
-  import * as htmlToImage from 'html-to-image';
-  import download from 'downloadjs';
+  import html2pdf from 'html2pdf.js';
   import cards from './config';
   let page: HTMLElement | null = null;
 
@@ -11,11 +10,15 @@
 
   const downloadImg = () =>
     !!page &&
-    htmlToImage
-      .toPng(page, { quality: 1, canvasHeight: 2480, canvasWidth: 3508 })
-      .then((dataUrl) => {
-        download(dataUrl, 'page.png');
-      });
+    html2pdf()
+      .set({
+        filename: `page.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, letterRendering: true },
+        jsPDF: { unit: 'cm', format: 'A4', orientation: 'portrait' }
+      })
+      .from(page)
+      .save();
 </script>
 
 {#if startFrom > 0}
@@ -23,7 +26,7 @@
 {/if}
 <div
   bind:this={page}
-  class="p-2 flex flex-wrap justify-center gap-2 w-[21cm] h-[29.7cm]"
+  class="p-2 flex flex-wrap justify-center gap-2 w-[210mm] mt-4"
   on:click={downloadImg}
   on:keypress={downloadImg}
 >
@@ -38,7 +41,7 @@
       <span class="text-lg !text-black">
         {card.description}
       </span>
-      <div class="h-12 w-12 absolute left-2 bottom-2 image" />
+      <img src="logos/courseLogo.png" class="h-12 w-12 absolute left-2 bottom-2" />
     </div>
   {/each}
 </div>
