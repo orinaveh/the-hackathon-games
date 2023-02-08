@@ -27,9 +27,13 @@ export const signIn = () =>
       const { user, operationType } = result;
       auth.updateCurrentUser(user);
       if (operationType === 'signIn') {
-        await setDoc(doc(firestore, 'users', user.uid), {
-          name: user.displayName
-        });
+        await setDoc(
+          doc(firestore, 'users', user.uid),
+          {
+            name: user.displayName
+          },
+          { merge: true }
+        );
       }
     }
   });
