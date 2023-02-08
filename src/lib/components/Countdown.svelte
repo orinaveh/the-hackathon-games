@@ -14,7 +14,7 @@
 
   let screenH: number, screenW: number;
 
-  message ||= 'Brake Time';
+  message ||= 'Break Time';
 
   const getInitialTimeLeft = (date: Date, currentDate: Date) =>
     (date.getTime() - currentDate.getTime()) / 1000;

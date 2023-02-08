@@ -10,7 +10,7 @@
 <Doc ref="endTime/1" {firestore} let:data={{ time, message, title, currentCurse }}>
   <Countdown
     {message}
-    title={title || 'Time To Next Brake'}
+    title={title || 'Time To Next Break'}
     curse={currentCurse}
     date={time?.toDate()}
   />
